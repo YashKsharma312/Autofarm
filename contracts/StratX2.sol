@@ -157,6 +157,10 @@ contract Farm {
     ) public {
         farmContract.add(_allocPoint, _want, _withUpdate, _strat);
     }
+    
+    function deposit(uint256 _pid, uint256 _wantAmt)public{
+        farmContract.deposit(_pid,_wantAmt);
+    }
 
     
 }
