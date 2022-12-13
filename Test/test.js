@@ -81,5 +81,18 @@ describe("Autofarm test contract", function () {
     var tx = await autoFarmContract.connect(impersonatedSigner).AUTO();
     expect(await autoFarmContract.AUTO()).to.equal("0x4508ABB72232271e452258530D4Ed799C685eccb");
   });
+  
+  it("6. Adding new lp", async function () {
+    var allocpoint = 1000;
+    var erc20Address = "0xCF2495d59E81405b1e9320a66bcc190941D7184F";
+    var booleanVal = false;
+    var stratAddress = "0xbc367b25f6f512AF177Be166392370ff32284068";
+    var tx = await autoFarmContract.connect(impersonatedSigner).add(allocpoint, erc20Address, booleanVal, stratAddress);
+    const tx1 = await tx.wait();
+
+    poolLen = await autoFarmContract.connect(impersonatedSigner).poolLength();
+
+    poolInfo = await autoFarmContract.poolInfo(715);
+    expect(poolInfo.allocPoint).to.equal(allocpoint);})
 
 });
