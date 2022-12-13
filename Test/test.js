@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const helpers = require("@nomicfoundation/hardhat-network-helpers");
 
-describe("Uniswap test contract", function () {
+describe("Autofarm test contract", function () {
   var owner, addr1, addr2, impersonatedSigner;
         
   var Autofarm, hardhatAutofarm, autoFarmAddress, autoFarmContract;
