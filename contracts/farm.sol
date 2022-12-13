@@ -131,9 +131,8 @@ interface AutoFarm {
 }
 
 contract Farm {
-    //address AtFarm = 0xd74b782e05aa25c50e7330af541d46e18f36661c;
     address AtFarm = 0x0895196562C7868C5Be92459FaE7f877ED450452;
-    //address AtFarm = 0xD0afc7382BCfd6579f7a0Dbc9450FfC6F46EC1d3;
+   
     AutoFarm farmContract = AutoFarm(AtFarm);
 
     function getOwner() public view returns (address) {
