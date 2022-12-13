@@ -1,5 +1,5 @@
 async function main() {  
-    const MyBSCTestnet = await ethers.getContractFactory("StratX2");     
+    const MyBSCTestnet = await ethers.getContractFactory("Farm");     
     const MyBSCTestnetContract = await MyBSCTestnet.deploy();
     console.log("Contract deployed to address:",MyBSCTestnetContract.address);
   }
