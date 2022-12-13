@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.6;
-// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
+pragma solidity >0.6.12;
+
 interface IERC20 {
     /**
      * @dev Returns the amount of tokens in existence.
@@ -86,10 +86,11 @@ interface IERC20 {
 }
 
 interface AutoFarm {
+    // function AUTO() external returns (address);
+
     function poolLength() external returns (uint256);
 
     function owner() external view returns (address);
-    
 
     // Add a new lp to the pool. Can only be called by the owner.
     // XXX DO NOT add the same LP token more than once. Rewards will be messed up if you do. (Only if want tokens are stored here.)
@@ -109,7 +110,7 @@ interface AutoFarm {
         returns (uint256);
 
     // View function to see pending BUST on frontend.
-    function pendingAUTO(uint256 _pid, address _user)
+    function pendingBUST(uint256 _pid, address _user)
         external
         returns (uint256);
 
@@ -127,16 +128,12 @@ interface AutoFarm {
 
     // Update reward variables of the given pool to be up-to-date.
     function updatePool(uint256 _pid) external;
-
-    function deposit(uint256 _pid, uint256 _wantAmt) external;
-
-    function withdraw(uint256 _pid, uint256 _wantAmt) external;
-
-    function withdrawAll(uint256 _pid) external;
 }
 
-contract StratX2 {
-    address AtFarm = 0xe2e7Cf05E14e6fBBCbaA2Cd361DD99c03DFF9f72;
+contract Farm {
+    //address AtFarm = 0xd74b782e05aa25c50e7330af541d46e18f36661c;
+    address AtFarm = 0x0895196562C7868C5Be92459FaE7f877ED450452;
+    //address AtFarm = 0xD0afc7382BCfd6579f7a0Dbc9450FfC6F46EC1d3;
     AutoFarm farmContract = AutoFarm(AtFarm);
 
     function getOwner() public view returns (address) {
@@ -152,12 +149,14 @@ contract StratX2 {
         farmContract.set(_pid, _allocPoint, _withUpdate);
     }
 
-    function add(uint256 _allocPoint, IERC20 _want, bool _withUpdate, address _strat) public{
-        farmContract.add(_allocPoint,_want,_withUpdate,_strat);
+    function add(
+        uint256 _allocPoint,
+        IERC20 _want,
+        bool _withUpdate,
+        address _strat
+    ) public {
+        farmContract.add(_allocPoint, _want, _withUpdate, _strat);
     }
 
-    function deposit(uint256 _pid, uint256 _wantAmt) public{
-        farmContract.deposit(_pid,_wantAmt);
-    }
-
+    
 }
